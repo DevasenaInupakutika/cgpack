@@ -1,0 +1,496 @@
+!$Id: cgca_m2pfem.f90 55 2015-01-12 14:09:09Z mexas $
+
+!*********************************************************************72
+
+!*robodoc*m* CGPACK/cgca_m2pfem
+!  NAME
+!    cgca_m2pfem
+!  SYNOPSIS
+
+module cgca_m2pfem
+
+!  DESCRIPTION
+!    Module dealing with interfacing CGPACK with ParaFEM.
+!  AUTHOR
+!    Anton Shterenlikht
+!  COPYRIGHT
+!    See CGPACK_Copyright
+!  CONTAINS
+!    Private derived types: cgca_pfem_rca, cgca_pfem_mcen,
+!    cgca_pfem_type_stress.
+!    Public coarray variables of derived types: cgca_pfem_centroid_tmp,
+!    cgca_pfem_stress.
+!    Private local, non-coarray var of derived type:
+!    cgca_pfem_centroid.
+!    Routines: cgca_pfem_cenc, cgca_pfem_ctalloc, cgca_pfem_ctdalloc,
+!    cgca_pfem_salloc, cgca_pfem_sdalloc, cgca_pfem_cendmp,
+!    cgca_pfem_sdmp, cgca_pfem_simg
+!  USES
+!    cgca_m1co
+!  USED BY
+!    end user?
+!  SOURCE
+
+use :: cgca_m1co, only : idef, rdef
+implicit none
+
+private
+public ::                                                              &
+cgca_pfem_cenc, &
+cgca_pfem_centroid_tmp, cgca_pfem_stress, &
+cgca_pfem_ctalloc, cgca_pfem_ctdalloc,        &
+cgca_pfem_salloc,  cgca_pfem_sdalloc, &
+cgca_pfem_cendmp,  cgca_pfem_sdmp, &
+cgca_pfem_simg
+
+integer, parameter :: cgca_pfem_iwp = selected_real_kind(15,300)
+
+!*roboend*
+
+
+!*robodoc*d* cgca_m2gb/cgca_pfem_centroid_tmp
+!  NAME
+!    cgca_pfem_centroid_tmp
+!  SYNOPSIS
+
+type cgca_pfem_rca
+ real( kind=cgca_pfem_iwp ), allocatable :: r(:,:)
+end type
+type( cgca_pfem_rca ) :: cgca_pfem_centroid_tmp[*] 
+
+!  DESCRIPTION
+!    RCA stands for Rugged CoArray.
+!     cgca_pfem_centroid_tmp
+!    is a temporary scalar *coarray* of derived type with allocatable
+!    array component, storing centroids of ParaFEM finite
+!    elements on this image.
+!    The array might be of different length on different images,
+!    so have to use an allocatable component of a coarray variable
+!    of derived type.
+!  USED BY
+!    routines of this module
+!*roboend*
+
+
+!*robodoc*d* cgca_m2gb/cgca_pfem_centroid
+!  NAME
+!    cgca_pfem_centroid
+!  SYNOPSIS
+
+type cgca_pfem_mcen
+ integer( kind=idef ) :: image
+ integer( kind=idef ) :: elnum
+ real( kind=cgca_pfem_iwp ) :: centr(3)
+end type
+type( cgca_pfem_mcen ), allocatable :: cgca_pfem_centroid(:)
+
+!  DESCRIPTION
+!    MCEN stands for Mixed CENtroid data type.    
+!    Assumption!! This is a 3D problems, so the centroid is
+!    defined by 3 coordinates, hence centr(3).
+!    This type includes 3 components: (1) image number,
+!    (2) the local element number on that image and
+!    (3) the allocatable local,
+!    *not* coarray, array to store the centroid coordinates.
+!     cgca_pfem_centroid
+!    is an allocatable array of derived type cgca_pfem_mcen.
+!    Each entry in this array corresponds to an element
+!    with centroid coordinates within the coarray "box" on
+!    this image.
+!    Elements from all images are analysed.
+!  USED BY
+!*roboend*
+
+
+!*robodoc*d* cgca_m2gb/cgca_pfem_stress
+!  NAME
+!    cgca_pfem_stress
+!  SYNOPSIS
+
+type cgca_pfem_type_stress
+ real( kind=cgca_pfem_iwp ), allocatable :: stress(:,:,:)
+end type
+type( cgca_pfem_type_stress ) :: cgca_pfem_stress[*]
+
+!  DESCRIPTION
+!    This type has a single allocatable array to store
+!    all stress components for all integration points
+!    for all elements on an image.
+!    This data will be read by all images.
+!*roboend*
+
+contains
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_ctalloc
+!  NAME
+!    cgca_pfem_ctalloc
+!  SYNOPSIS
+
+subroutine cgca_pfem_ctalloc( ndim, nels_pp )
+
+!  INPUTS
+
+integer, intent( in ) :: ndim, nels_pp
+
+!  SIDE EFFECTS
+!    Allocatable array component cgca_pfem_centroid_tmp%r becomes
+!    allocated
+!  INPUTS
+!    ndim - integer, number of DOF per node.
+!    nels_pp - elements per MPI process (per image).
+!  DESCRIPTION
+!    CTA stands for Centroids Temporary Allocate.
+!    This routine allocates an allocatable array component of coar.
+!    The allocatable array stores FE centroid coordinates
+!    together with their numbers and MPI ranks where these are stored.
+!  USES
+!  USED BY
+!  SOURCE
+
+integer :: errstat=0
+
+allocate( cgca_pfem_centroid_tmp%r( ndim, nels_pp ), stat=errstat )
+if ( errstat .ne. 0 ) error stop                                       &
+  "ERROR: cgca_pfem_ctalloc: allocate cgca_pfem_centroid_tmp%r"
+
+end subroutine cgca_pfem_ctalloc
+
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_ctdalloc
+!  NAME
+!    cgca_pfem_ctdalloc
+!  SYNOPSIS
+
+subroutine cgca_pfem_ctdalloc
+
+!  SIDE EFFECTS
+!    Allocatable array component of cgca_pfem_centroid_tmp becomes
+!    deallocate
+!  DESCRIPTION
+!    CTD stands for Centroids Temporary Allocate.
+!    This routine deallocates an allocatable array component of coar.
+!    This must be done only after all images copied the contents of
+!    type( rca ) :: cgca_pfem_centroid_tmp[*] into their local,
+!    *not* coarray centroid arrays.
+!  USES
+!  USED BY
+!  SOURCE
+
+integer :: errstat=0
+
+deallocate( cgca_pfem_centroid_tmp%r, stat=errstat )
+if ( errstat .ne. 0 )                                                  &
+  error stop "ERROR: cgca_pfem_ctd: deallocate( coar%r )"
+
+end subroutine cgca_pfem_ctdalloc
+
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_cenc
+!  NAME
+!    cgca_pfem_cenc
+!  SYNOPSIS
+
+subroutine cgca_pfem_cenc( origin, rot, bcol, bcou )
+
+!  INPUTS
+
+real( kind=rdef ), intent( in ) ::   &
+ origin(3),        & ! origin of the "box" cs, in FE cs
+ rot(3,3),         & ! rotation tensor *from* FE cs *to* CA cs
+ bcol(3),          & ! lower phys. coords of the coarray on image
+ bcou(3)             ! upper phys. coords of the coarray on image
+
+!  SIDE EFFECTS
+!    array cgca_pfem_centroid is changed.
+!    This array is available via host association.
+!  DESCRIPTION
+!    CENC stands for CENtroids Collection.
+!    This routine reads centroids of all elements from all MPI processes
+!    and adds those with centroids within its CA "box" to its
+!    cgca_pfem_centroid array.
+!  NOTES
+!    This routine must be called only after coarray cgca_pfem_centroid_tmp
+!    has been established on all images.
+!  SOURCE
+
+integer :: errstat, i, j
+
+! counter of elements which have centroids within the CA "box"
+! on this image
+integer( kind=idef ) :: counter=0
+
+! use the default integer to match the ParaFEM data type
+integer :: elnum
+
+! centroid coords in CA cs 
+real( kind=cgca_pfem_iwp ), allocatable :: cen_ca(:)
+
+! allocate the CA cs centroid array for a single point
+! set to zero initially
+allocate( cen_ca( size(cgca_pfem_centroid_tmp%r, dim=1) ),             &
+          source = 0.0_cgca_pfem_iwp, stat=errstat )
+if ( errstat .ne. 0 )                                                  &
+  error stop "ERROR: cgca_pfem_cenc: cannot allocate( cen_ca )"
+
+! Allocate to size 0. Any new value added to the array
+! automatically increases its size.
+allocate( cgca_pfem_centroid( 0 ), stat=errstat )
+if ( errstat .ne. 0 ) error stop                                       &
+  "ERROR: cgca_pfem_cenc: cannot allocate cgca_pfem_centroid"
+
+! loop over all images
+images: do i=1, num_images() 
+
+! loop over all elements on that image
+elements: do j = 1, size( cgca_pfem_centroid_tmp[i]%r, dim=2 )
+
+  ! Convert centroid coordinates from FE cs to CA cs
+  ! cgca_pfem_centroid_tmp[i]        - variable on image i
+  ! cgca_pfem_centroid_tmp[i]%r      - component that is the centroids
+  !                                    real array
+  ! cgca_pfem_centroid_tmp[i]%r(:,j) - take finite element j, and all
+  !                                    centroid coordinates for it.
+  cen_ca =  matmul( rot, (cgca_pfem_centroid_tmp[i]%r(:,j) - origin) )
+  
+  ! Check whether CA cs centroid is within the box.
+  ! If all CA cs centroid coordinates are greater or equal to
+  ! the lower bound of the box, and all of them are also
+  ! less of equal to the upper bound of the box, then the centroid
+  ! is inside. Then add the new entry. The allocatable array is
+  ! automaticaly enlarged.
+  if ( all( cen_ca .ge. bcol ) .and. all( cen_ca .le. bcou ) )         &
+    cgca_pfem_centroid =                                               &
+          (/ cgca_pfem_centroid, cgca_pfem_mcen( i, j, cen_ca ) /)
+
+end do elements
+end do images
+
+end subroutine cgca_pfem_cenc
+
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_cendmp
+!  NAME
+!    cgca_pfem_cendmp
+!  SYNOPSIS
+
+subroutine cgca_pfem_cendmp
+
+!  SIDE EFFECTS
+!    Dumps some data to stdout
+!  DESCRIPTION
+!    CENDMP stands for CENtroids array dump.
+!    This routine dumps cgca_pfem_centroid to stdout.
+!  NOTES
+!    Must call from all images.
+!  SOURCE
+
+integer :: i, img
+
+img = this_image()
+
+do i = 1, size( cgca_pfem_centroid )
+  write (*,*) "CA on img"      , img                        ,          &
+              "<-> FE"         , cgca_pfem_centroid(i)%elnum,          &
+              "on img"         , cgca_pfem_centroid(i)%image,          &
+              "centr. in CA cs", cgca_pfem_centroid(i)%centr
+end do
+
+end subroutine cgca_pfem_cendmp
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_salloc
+!  NAME
+!    cgca_pfem_salloc
+!  SYNOPSIS
+
+subroutine cgca_pfem_salloc( nels_pp, intp, comp )
+
+!  INPUTS
+
+integer, intent( in ) :: nels_pp, intp, comp
+
+!  SIDE EFFECTS
+!    Allocatable component array cgca_pfem_stress%stress becomes
+!    allocated
+!  INPUTS
+!    nels_pp - number of elements on this image
+!    intp - number of integration points per element
+!    comp - number of stress tensor components
+!  DESCRIPTION
+!    SALLOC stands for Allocate Stress tensor array.
+!    This routine allocates an allocatable array component of coar.
+!    The allocatable array stores all stress tensor components,
+!    for all integration points on all elements on an image.
+!  USES
+!  USED BY
+!  SOURCE
+
+integer :: errstat=0
+
+allocate( cgca_pfem_stress%stress( nels_pp, intp, comp ),              &
+          source=0.0_cgca_pfem_iwp, stat=errstat )
+if ( errstat .ne. 0 )                                                  &
+  error stop "ERROR: cgca_pfem_cta: allocate coar%stress"
+
+end subroutine cgca_pfem_salloc
+
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_sdalloc
+!  NAME
+!    cgca_pfem_sdalloc
+!  SYNOPSIS
+
+subroutine cgca_pfem_sdalloc
+
+!  SIDE EFFECTS
+!    allocatable array cgca_pfem_stress%stress become deallocated
+!  DESCRIPTION
+!    SDALLOC stands for Deallocate Stress tensor array.
+!    This routine deallocates allocatable array component of coar.
+!    This routine should be called only when the analysis is complete.
+!    Any and every image can call this routine.
+!  USES
+!  USED BY
+!  SOURCE
+
+integer :: errstat=0
+
+deallocate( cgca_pfem_stress%stress, stat=errstat )
+if ( errstat .ne. 0 )                                                  &
+  error stop "ERROR: cgca_pfem_ctd: deallocate cgca_pfem_stress%stress"
+
+end subroutine cgca_pfem_sdalloc
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_sdmp
+!  NAME
+!    cgca_pfem_sdmp
+!  SYNOPSIS
+
+subroutine cgca_pfem_sdmp
+
+!  SIDE EFFECTS
+!    Dumps some data to stdout
+!  DESCRIPTION
+!    SDMP stands for Stress tensor dump.
+!    This routine dumps stress tensors to stdout.
+!  NOTES
+!    Must call from all images.
+!  SOURCE
+
+integer :: img, nel, nintp, el, intp
+
+  img = this_image()
+  nel = size( cgca_pfem_stress%stress, dim=1 )
+nintp = size( cgca_pfem_stress%stress, dim=2 )
+
+do   el = 1, nel
+do intp = 1, nintp
+  write (*,*) "img", img, "FE", el, "int p.", intp, "stress",          &
+              cgca_pfem_stress%stress( el, intp, : )
+end do
+end do
+
+end subroutine cgca_pfem_sdmp
+!*roboend*
+
+
+!*robodoc*s* cgca_m2pfem/cgca_pfem_simg
+!  NAME
+!    cgca_pfem_simg
+!  SYNOPSIS
+
+subroutine cgca_pfem_simg( simg )
+
+!  OUTPUT
+
+real( kind=rdef ), intent(out) :: simg(3,3)
+
+!    simg - mean stress tensor over all integration points on all
+!    finite elements linked to CA on this image.
+!    Note that I use CGPACK kind, because this var will be input to
+!    a CGPACK routine.
+!  DESCRIPTION
+!    SIMG stands for mean Stress on an Image.
+!    The routine reads all stress tensors from all integration
+!    points for all elements which are linked to CA on this image
+!    and calculates the mean value.
+!    This value is then used to pass to the cleavage routine.
+!  SOURCE
+
+! Running total stress array.
+! The number of components is read from cgca_pfem_stress%stress
+! Note I use the CGPACK real kind!
+real( kind=rdef ) ::                                                   &
+ stot( size( cgca_pfem_stress%stress, dim=3 ) )
+
+integer :: el, nel, rel, intp, nintp, rimg
+
+! Total number of elements linked to CA model on this image
+! Total number of int. points per element
+  nel = size( cgca_pfem_centroid )
+nintp = size( cgca_pfem_stress%stress, dim=2 )
+
+! Add all stress tensors together
+! Loop over all elements lined to CA on this image and over all int.
+! points.
+stot = 0.0_rdef
+do   el=1, nel
+do intp=1, nintp
+
+ ! Calculate the image and the element numbers to read the stress
+ ! data from.
+ rimg = cgca_pfem_centroid(el)%image
+  rel = cgca_pfem_centroid(el)%elnum
+
+ ! Add the new tensor values to the running total.
+ ! Convert from ParaFEM real kind to CGPACK.
+ ! Hopefully, any potential loss of accuracy is of no importance.
+ stot = stot +                                                         &
+     real( cgca_pfem_stress[ rimg ]%stress( rel, intp, :), kind=rdef )
+
+end do
+end do
+
+! Construct a (3,3) matrix from (6) vector.
+! Observe the component order of ParaFEM
+!   sx=stress(1)
+!   sy=stress(2)    
+!   sz=stress(3)
+!   txy=stress(4)  
+!   tyz=stress(5) 
+!   tzx=stress(6)
+!   sigm=(sx+sy+sz)/three
+!http://parafem.googlecode.com/svn/trunk/parafem/src/modules/shared/new_library.f90
+!https://code.google.com/p/parafem/source/browse/trunk/parafem/src/modules/shared/new_library.f90
+simg(1,1) = stot(1)
+simg(2,2) = stot(2)
+simg(3,3) = stot(3)
+simg(1,2) = stot(4)
+simg(2,3) = stot(5)
+simg(3,1) = stot(6)
+simg(2,1) = simg(1,2)
+simg(3,2) = simg(2,3)
+simg(1,3) = simg(3,1) 
+
+! calculate the mean
+simg = simg / real( nel*nintp, kind=rdef )
+
+end subroutine cgca_pfem_simg
+!*roboend*
+
+
+!*********************************************************************72
+
+end module cgca_m2pfem

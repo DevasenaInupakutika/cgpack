@@ -1,0 +1,19 @@
+#!/bin/sh
+#PBS -l walltime=00:10:00,nodes=4:ppn=16
+#PBS -j oe
+#PBS -m abe
+
+cd $HOME/nobackup/cgpack/branches/coarray/tests
+export OUTFILE=ca_check1.out
+echo > $OUTFILE
+
+echo "LD_LIBRARY_PATH: " $LD_LIBRARY_PATH	>> $OUTFILE
+echo "which mpirun: " `which mpirun`		>> $OUTFILE
+export I_MPI_DAPL_PROVIDER=ofa-v2-ib0		>> $OUTFILE
+
+mpdboot --file=$PBS_NODEFILE -n 4		>> $OUTFILE
+mpdtrace -l					>> $OUTFILE
+
+./ca_check1.xcack				>> $OUTFILE
+
+mpdallexit					>> $OUTFILE

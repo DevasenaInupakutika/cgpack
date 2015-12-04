@@ -1,0 +1,191 @@
+.\"$Id$
+.EQ
+delim $$
+.EN
+.TL
+CGPACK manual
+.AU
+Anton Shterenlikht
+.AI
+Mech Eng Dept, The University of Bristol, Bristol BS8 1TR, UK
+.DA
+.AB
+CGPACK is a cellular automata library
+for microstructure evolution, deformation
+and fracture.
+The library is designed for use on HPC systems.
+It is implemented in Fortran 2008,
+with extensive use of coarrays for parallelisation.
+.AE
+.NH 1
+CGPACK library layout
+.PP
+The library is made up of a set of modules.
+All modules are named following this scheme:
+\fCcgca_m\fP\fIL\fP<\fImodule name\fP>.f90
+or
+\fCcgca_m\fP\fIL\fP<\fImodule name\fP>.F90,
+where file extension
+.CW f90
+means that the file does not need pre-processing,
+and file extension
+.CW F90
+means the file requires pre-processing.
+.I L
+is an integer number, giving the
+.I level
+of each module.
+<\fImodule name\fP>
+is a string of characters
+.CW [a-z] .
+.PP
+The lowest level is 1.
+Modules of level
+.I L+1
+depend only on modules of level
+. I L
+and lower.
+So module of level 3 depends only on modules
+of levels 2 and 1.
+Modules of level 1 do not depend on any other
+modules. 
+The only exception is the top level module
+that is named
+.CW cgca.F90 .
+At the time of writing these are the CGPACK modules:
+.DS L
+.CW
+cgca.f90
+cgca_m1co.f90
+cgca_m2alloc.f90
+cgca_m2gb.f90
+cgca_m2geom.f90
+cgca_m2glm.f90
+cgca_m2hx.f90
+cgca_m2lnklst.f90
+cgca_m2mpiio.f90
+cgca_m2out.F90
+cgca_m2pck.F90
+cgca_m2phys.f90
+cgca_m2red.f90
+cgca_m2rnd.f90
+cgca_m2rot.f90
+cgca_m2stat.f90
+cgca_m3clvg.F90
+cgca_m3gbf.f90
+cgca_m3nucl.f90
+cgca_m3pfem.f90
+cgca_m3sld.F90
+cgca_m4fr.f90
+.DE
+.NH 1
+Code availability
+.PP
+The code is available from
+.DS B
+.CW
+http://cgpack.sourceforge.net/
+http://eis.bris.ac.uk/~mexas/cgpack/
+.DE
+Full sources are also available as ROBOdoc auto-generated documents:
+.DS B
+.CW
+html: http://eis.bris.ac.uk/~mexas/cgpack/src/robo_sourcefiles.html
+ pdf: http://eis.bris.ac.uk/~mexas/cgpack/src/cgpack.pdf
+.DE
+CGPACK is distributed under 2-clause BSD licence,
+apart from a single module distributed
+under the Apache licence.
+.NH 1
+Building CGPACK
+.PP
+To build CGPACK do (adjust for your environment):
+.DS L
+.CW
+mkdir \[Do]HOME/cgpack
+mkdir \[Do]HOME/lib
+cd \[Do]HOME/cgpack
+svn co https://svn.code.sf.net/p/cgpack/code/ .
+cd head
+ln -s Makefile-archer Makefile
+make
+make install
+.DE
+This will build and install the library
+under
+.DS L
+.CW
+\[Do]HOME/lib/libcgpack.a
+.DE
+.NH 1
+Cellular automata (CA)
+.PP
+There is extensive background literature on CA.
+.[
+1984 Vichniac Simulating physics with cellular automata Physica D
+.]
+.[
+chopard droz 1998
+.]
+.[
+phillips crystals defects 2001
+.]
+.[
+lesar 2013
+.]
+The CGPACK library is designed for 3D analysis.
+The 26 cell neighbourhood (Moore's neighbourhood) is assumed.
+.[
+shterenlikht margetts 2015 proc roy
+.]
+.PP
+The library provides parallelisation via coarrays,
+which are a new language element introduced
+in Fortran 2008 standard.
+.[
+shterenlikht cebamanos 2015
+.]
+The central feature of the library is the
+.I space
+coarray.
+This is an allocatable integer array coarray,
+defined as follows.
+.DS L
+.CW
+integer( kind=iarr ), allocatable, intent(inout) :: coarray(:,:,:,:)[:,:,:]
+.DE
+where
+.CW iarr
+is an integer kind used for the space coarray.
+All kinds and other parameters are defined
+in module
+.CW cgca_m1co.f90 .
+Space coarray is allocated by routine
+.CW cgca_as
+from module
+.CW cgca_m2alloc.f90 .
+Routine
+.CW cgca_as
+takes many input parameters:
+.DS L
+.CW
+subroutine cgca_as( l1, u1, l2, u2, l3, u3, col1, cou1, col2, cou2, &
+                    col3, props, coarray )
+.DE
+and allocates the space coarray as follows.
+.DS L
+.CW
+allocate( coarray(                                                  &
+          l1-halo:u1+halo, l2-halo:u2+halo, l3-halo:u3+halo, props) &
+          [col1:cou1, col2:cou2, col3:*] )
+.DE
+.so messages.1
+.so parafem.1
+.NH 1
+Modules
+.NH 2
+Level 1
+.NH 2
+Level 2
+.so cgca_m2lnklst.1
+.bp

@@ -1,0 +1,21 @@
+#!/bin/bash --login
+#
+#$Id: template.arc.pvbatch 33 2014-12-09 11:13:52Z mexas $
+#
+#PBS -j oe
+#PBS -A e347
+#PBS -l select=4
+#PBS -l walltime=00:10:00
+#PBS -N pv
+
+# resolve all symlinks to absolute paths
+export PBS_O_WORKDIR=$(readlink -f $PBS_O_WORKDIR)
+
+# Switch to current working directory
+cd $PBS_O_WORKDIR
+
+module load paraview/4.1.0-offscreen
+
+#--use-offscreen-rendering sample.xdmf.py 
+
+aprun -n 96 -N 24 -S 12 -d 1 -T pvbatch pv.gb.cracks.py 

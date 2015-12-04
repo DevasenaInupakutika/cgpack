@@ -1,0 +1,5 @@
+if (opencoarrays_aware_compiler)
+  add_subdirectory(coarrayHelloWorld)
+  add_subdirectory(dist_transpose )
+  add_subdirectory(pde_solvers)
+endif()

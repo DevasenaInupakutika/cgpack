@@ -1,0 +1,32 @@
+#!/bin/sh
+#PBS -l walltime=00:10:00,nodes=2:ppn=16
+#PBS -q testq
+#PBS -j oe
+#PBS -m abe
+
+cd $HOME/nobkp/cgpack/head/tests
+export OUTFILE=ca_check1.out
+echo > $OUTFILE
+
+#echo "LD_LIBRARY_PATH: " $LD_LIBRARY_PATH	>> $OUTFILE
+#echo "which mpirun: " `which mpirun`		>> $OUTFILE
+#export I_MPI_DAPL_PROVIDER=ofa-v2-ib0		>> $OUTFILE
+
+NCNT=`uniq $PBS_NODEFILE | wc -l - | cut -d ' ' -f 1`
+echo "The node count determined from the nodefile is: " $NCNT >> $OUTFILE
+
+cat $PBS_NODEFILE
+export nodes=`cat $PBS_NODEFILE`
+export nnodes=`cat $PBS_NODEFILE | wc -l`
+export confile=nodes
+
+for i in $nodes; do
+   echo ${i} >>$confile
+done
+
+#mpdboot --file=$PBS_NODEFILE --verbose -n $NCNT >> $OUTFILE
+#mpdtrace -l					>> $OUTFILE
+
+./ca_check1.xcack				>> $OUTFILE
+
+#mpdallexit					>> $OUTFILE

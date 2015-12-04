@@ -1,0 +1,71 @@
+!SESSION 2015-11-27 11:04:43.863 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.parallel.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.parallel.product
+
+!ENTRY org.eclipse.core.net 1 0 2015-11-27 11:05:42.854
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.p2.operations 2 0 2015-11-27 11:08:05.064
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 2 10001 2015-11-27 11:08:05.064
+!MESSAGE Your original request has been modified.
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "PTP Contributed Target System Configurations" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "PTP Parallel Language Development Tools UPC Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "PTP Fortran Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "PTP Parallel Language Development Tools Fortran Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "PTP Fortran Project Synchronization Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "Parallel Tools Platform" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.064
+!MESSAGE "PTP Scalable Debug Manager (SDM)" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.065
+!MESSAGE "PTP External Tools Framework TAU Extension for Fortran" will be ignored because a newer version is already installed. 
+
+!ENTRY org.eclipse.equinox.p2.operations 2 0 2015-11-27 11:08:05.069
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 2 10001 2015-11-27 11:08:05.069
+!MESSAGE Your original request has been modified.
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP Contributed Target System Configurations" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP Parallel Language Development Tools UPC Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP Fortran Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP Parallel Language Development Tools Fortran Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP Fortran Project Synchronization Support" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "Parallel Tools Platform" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP Scalable Debug Manager (SDM)" will be ignored because a newer version is already installed. 
+!SUBENTRY 2 org.eclipse.equinox.p2.operations 2 10004 2015-11-27 11:08:05.069
+!MESSAGE "PTP External Tools Framework TAU Extension for Fortran" will be ignored because a newer version is already installed. 
+!SESSION 2015-11-27 11:08:42.194 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.parallel.product -product org.eclipse.epp.package.parallel.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.parallel.product -data file:/Users/user/Work/CGPACK-Work/cgpack-code/releases/2.5/ -product org.eclipse.epp.package.parallel.product
+
+!ENTRY org.eclipse.core.net 1 0 2015-11-27 11:08:52.701
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.cdt.ui 2 0 2015-11-27 11:09:35.823
+!MESSAGE Default project not found in New C/C++ Project Wizard
+
+!ENTRY org.eclipse.cdt.ui 2 0 2015-11-27 11:12:13.321
+!MESSAGE Default project not found in New C/C++ Project Wizard
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-11-27 11:13:15.390
+!MESSAGE Indexed 'cgpack' (0 sources, 0 headers) in 0.005 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)

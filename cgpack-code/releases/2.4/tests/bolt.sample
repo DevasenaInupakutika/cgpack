@@ -1,0 +1,2 @@
+#$Id: bolt.sample 9 2014-12-01 09:55:21Z mexas $
+bolt -n64 -t0:10:0 -j testAAB -o zzz "./testAAB.x 4 4 >& out"
