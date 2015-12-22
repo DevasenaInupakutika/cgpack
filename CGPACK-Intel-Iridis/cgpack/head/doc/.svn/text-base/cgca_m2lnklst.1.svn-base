@@ -1,0 +1,87 @@
+.\"$Id$
+.NH 3
+\fCcgca_m2lnklst.f90\fP
+.PP
+Module with routines for creating and updating of a linked list.
+The module contains two derived types:
+.DS L
+.CW
+cgca_lnklst_node
+cgca_lnklst_tpayld
+.DE
+and the following routines: 
+.DS L
+.CW
+cgca_addhead
+cgca_addmiddle
+cgca_inithead
+cgca_lstdmp
+cgca_rmhead
+cgca_rmmiddle
+.DE
+.PP
+The list has to be established first with
+.CW cgca_inithead .
+.NH 4
+cgca_lnklst_node
+.PP
+This is a derived type with a pointer component of the
+same type to maintain a link to other variables of the
+same type.
+The type is:
+.DS L
+.CW
+type cgca_lnklst_node
+  type( cgca_lnklst_tpayld ) :: value
+  type( cgca_lnklst_node ), pointer :: next
+end type cgca_lnklst_node
+.DE
+This type allows for a standard one-direction linked list,
+which can be schematically illustrated as:
+.PS 1.5i
+copy "lnklst1.pic"
+.PE
+where
+.CW NULL
+means the pointer is not associated.
+.PP
+Access to the list is possible only from the head (top) node.
+.NH 4
+cgca_lnklst_tpayload
+.PP
+This is the type for payload, i.e. the data
+contained in each node of the list.
+.DS L
+.CW
+type cgca_lnklst_tpayld
+  integer :: lwr(3), upr(3)
+end type cgca_lnklst_tpayld
+.DE
+The intention is that the data consists of
+the coordinates of the two corners of a CA box,
+the lower and the upper.
+The lower corner is that which has the lowest
+coordinates along all 3 directions.
+The upper corner is that which has the upper
+coordinates along all 3 directions.
+For example
+.DS L
+.CW
+lwr = (/  1 , 200 ,    3 /)
+upr = (/ 10 , 202 , 3000 /)
+.DE
+would denote a box extending fro 1 to 10
+along direction 1, from 200 to 202 along direction 2,
+and from 3 to 3000 along direction 3.
+.bp
+.so cgca_addhead.1
+.bp
+.so cgca_addmiddle.1
+.bp
+.so cgca_inithead.1
+.bp
+.so cgca_lstdmp.1
+.bp
+.so cgca_rmhead.1
+.bp
+.so cgca_rmmiddle.1

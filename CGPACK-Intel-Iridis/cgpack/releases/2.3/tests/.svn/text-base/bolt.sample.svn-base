@@ -1,0 +1,2 @@
+#$Id$
+bolt -n64 -t0:10:0 -j testAAB -o zzz "./testAAB.x 4 4 >& out"

@@ -1,0 +1,1 @@
+-genvall -genv I_MPI_FABRICS=shm:dapl -machinefile ./nodes  -n 32 ./ca_check1.xcack

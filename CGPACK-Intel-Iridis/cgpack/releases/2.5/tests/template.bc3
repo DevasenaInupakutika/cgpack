@@ -1,0 +1,23 @@
+#!/bin/sh
+#PBS -l walltime=01:00:00,nodes=4:ppn=16
+#PBS -j oe
+
+cd $HOME/nobkp/cgpack/head/tests
+export OUTFILE=zout
+echo > $OUTFILE
+
+NCNT=`uniq $PBS_NODEFILE | wc -l - | cut -d ' ' -f 1`
+echo "The node count determined from the nodefile is: " $NCNT >> $OUTFILE
+
+cat $PBS_NODEFILE
+export nodes=`cat $PBS_NODEFILE`
+export nnodes=`cat $PBS_NODEFILE | wc -l`
+export confile=nodes
+
+for i in $nodes; do
+   echo ${i} >>$confile
+done
+
+echo "START TIME:" `date` >> $OUTFILE
+./testABW.x >> $OUTFILE
+echo "END TIME:  " `date` >> $OUTFILE
