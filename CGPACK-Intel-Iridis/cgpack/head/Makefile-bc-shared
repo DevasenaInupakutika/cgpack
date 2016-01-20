@@ -20,8 +20,8 @@ FFLAGS=		-c -coarray -debug full -free -fPIC -warn all # -std08 #-warn stderrors
 
 CGPACK=		cgcapack
 MYLIB=		lib$(CGPACK).a
-LIBDIR=		$(HOME)/CGPACK-Work/lib
-MODDIR=		$(HOME)/CGPACK-Work/mod
+LIBDIR=		$(HOME)/cgpack/CGPACK-Intel-Iridis/lib
+MODDIR=		$(HOME)/cgpack/CGPACK-Intel-Iridis/mod
 
 # level 1
 

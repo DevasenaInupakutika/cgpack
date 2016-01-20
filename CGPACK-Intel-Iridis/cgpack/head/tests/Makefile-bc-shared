@@ -29,8 +29,8 @@ MPIFC=		mpiifort
 
 CGNAME=		cgca
 CGLIB=		$(CGNAME)pack
-LIBDIR=		$(HOME)/lib
-MODDIR=		$(HOME)/mod
+LIBDIR=		$(HOME)/cgpack/CGPACK-Intel-Iridis/cgpack/head
+MODDIR=		$(HOME)/cgpack/CGPACK-Intel-Iridis/cgpack/head
 MODPREFIX=	$(CGNAME)_
 LIBNAME=	lib$(CGLIB)
 

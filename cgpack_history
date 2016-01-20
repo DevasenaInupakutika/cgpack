@@ -1,0 +1,1000 @@
+   13  nosetests test_reti_sngl.py
+   14  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-dev-tests
+   15  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-dev-tests
+   16  nosetests test_reti_sngl.py
+   17  nano ../../tools/simulationobjects.py
+   18  nosetests test_reti_sngl.py
+   19  python test_reti_sngl.py
+   20  ls
+   21  rm protoms_py.log 
+   22  rm ethane.prepi ethane.frcmod ethane.zmat ethane_box.pdb etht* methanol.frcmod methanol.prepi methanol.zmat methanol_box.pdb run*
+   23  ls
+   24  rm ethane.tem methanol.tem 
+   25  ls
+   26  rm prep_files.tar 
+   27  nosetests test_reti_sngl.py
+   28  nano ../../tools/simulationobjects.py
+   29  python
+   30  ls
+   31  pwd
+   32  cd ..
+   33  ls
+   34  nosetests test_install_dependencies.py 
+   35  nosetests test_mpi_install.py 
+   36  nosetests test_tools_protoms.py 
+   37  nosetests test_parameters_ff.py 
+   38  nano test_pa
+   39  nano test_path.py 
+   40  nosetests test_path.py 
+   41  nosetests test_fortran_compile.py 
+   42  ls
+   43  cd test_setup/
+   44  nosetests test_prot_setup.py
+   45  nano water.pdb 
+   46  pwd
+   47  cd ../..
+   48  hg pull
+   49  hg update
+   50  pwd
+   51  cd tests/test_RETI_dbl/
+   52  nosetests test_reti_dbl.py 
+   53  ls out_free/lam-1.000/
+   54  ls out_free/lam-0.000/
+   55  nano out_free/lam-0.000/all.pdb 
+   56  ls
+   57  rm ethane.frcmod ethane.prepi ethane.zmat ethane_box.pdb methanol.frcmod methanol.zmat methanol.prepi methanol_box.pdb eth-meo.tem protoms_py.log run* prep_files.tar 
+   58  ls
+   59  rm -r out_free/
+   60  ls
+   61  nosetests test_reti_dbl.py 
+   62  cd ../test_gcmc/
+   63  ls
+   64  rm gcmc_box.pdb gcmc_wat.pdb protoms_py.log run* make_gcmcbox_py.log 
+   65  ls
+   66  nosetests test_gcmc_sim.py 
+   67  ls out/
+   68  cd ..
+   69  pwd
+   70  cd ..
+   71  nano CMakeLists.txt 
+   72  pwd
+   73  cd build
+   74  ctest
+   75  cd ..
+   76  hg pull
+   77  hg update
+   78  cd build/
+   79  cmake .. && make install
+   80  make test
+   81  ls
+   82  cd ..
+   83  pwd
+   84  nano CMakeLists.txt 
+   85  ls
+   86  cd ProtoMS-Work
+   87  ls
+   88  cd protoms-dev-tests
+   89  ls
+   90  cd ../protoms-test-suite
+   91  module load hg
+   92  hg branch
+   93  hg pull
+   94  hg update
+   95  cd tests/test_RETI_sngl
+   96  module load python amber numpy 
+   97  nosetests test_reti_sngl.py
+   98  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-test-suite
+   99  pwd
+  100  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  101  ls
+  102  rm ethane.zmat ethane_box.pdb ethane.prepi ethane.frcmod etht* run* prep_files.tar methanol.zmat methanol_box.pdb methanol.prepi methanol.frcmod 
+  103  ls]
+  104  ls
+  105  rm -r out_comb_*
+  106  ls
+  107  rm protoms_py.log 
+  108  ls
+  109  nosetests test_reti_sngl.py
+  110  pwd
+  111  cd export PROTOMSHOME=$PROTOMSHOME:/home/di1c13/ProtoMS-Work/protoms-dev-tests:/home/di1c13/ProtoMS-Work/protoms-dev-testsuite
+  112  export PROTOMSHOME=$PROTOMSHOME:/home/di1c13/ProtoMS-Work/protoms-dev-tests:/home/di1c13/ProtoMS-Work/protoms-dev-testsuite
+  113  pwd
+  114  cd ../../protoms-dev-tests
+  115  cd ../protoms-dev-tests
+  116  pwd
+  117  cd ../../../protoms-dev-tests
+  118  ls
+  119  nano tools/build_template.py
+  120  nano tools/make_single.py
+  121  nano tools/simulationobjects.py
+  122  pwd
+  123  cd tests/test_RETI_sngl/
+  124  nosetests test_reti_sngl.py
+  125  pwd
+  126  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-dev-tests
+  127  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-dev-tests
+  128  nosetests test_reti_sngl.py
+  129  pwd
+  130  cd ../..
+  131  nano CMakeLists.txt 
+  132  export CFLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage"
+  133  export LDFLAGS="-fprofile-arcs -ftest-coverage"
+  134  rm -rf build/
+  135  mkdir build
+  136  cd build 
+  137  cmake ..
+  138  module load cmake
+  139  cmake ..
+  140  make install
+  141  make test
+  142  cd ..
+  143  nano CMakeLists.txt 
+  144  cd build
+  145  ctest -S
+  146  cd ..
+  147  ls /usr/lib/python2.6/
+  148  module list
+  149  which python2.7
+  150  pwd
+  151  cd ../protoms-test-suite
+  152  hg pull
+  153  hg update
+  154  pwd
+  155  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  156  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  157  cd buil
+  158  rm -rf build/
+  159  mkdir build
+  160  cd build
+  161  cmake ..
+  162  make install
+  163  hg branch
+  164  ctest
+  165  ls
+  166  cd Testing/
+  167  ls
+  168  cd Temporary/
+  169  ls
+  170  nano LastTest.log 
+  171  pwd
+  172  cd ../..
+  173  ls
+  174  cd ..
+  175  rm -rf build/
+  176  hg branch
+  177  hg pull
+  178  hg update
+  179  mkdir build
+  180  cd build
+  181  cmake ..
+  182  make install
+  183  make test
+  184  nano ../src/printaverages.F
+  185  exit
+  186  cd ProtoMS-Work/
+  187  ls
+  188  cd protoms-dev-tests
+  189  ls
+  190  module load python numpy hg cmake
+  191  module list
+  192  pwd
+  193  hg pull
+  194  hg update
+  195  exit
+  196  ls
+  197  cd ProtoMS-Work/
+  198  ls
+  199  cd protoms-dev-tests
+  200  hg pull
+  201  module load hg
+  202  hg pull
+  203  hg update
+  204  cd ../protoms-dev-testsuite
+  205  ls
+  206  hg pull
+  207  hg update
+  208  pwd
+  209  ls
+  210  cd ProtoMS-Work
+  211  ls
+  212  cd protoms-dev-tests
+  213  ls
+  214  module load hg
+  215  hg pull
+  216  hg update
+  217  pwd
+  218  cd ../protoms-dev-testsuite
+  219  hg pull
+  220  hg update
+  221  cd ../protoms-test-suite
+  222  hg pull
+  223  hg update
+  224  hg resolve
+  225  hg resolve --all
+  226  cd ..
+  227  ls
+  228  rm -r protoms-test-suite
+  229  ls
+  230  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev -r protoms-test-suite protoms-test-suite
+  231  ls
+  232  cd protoms-test-suite
+  233  ls
+  234  cd tests
+  235  ls
+  236  cd test_setup/
+  237  ls
+  238  module load python numpy amber/12.0
+  239  module load cmake
+  240  nosetests test_prot_setup.py 
+  241  pwd
+  242  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  243  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  244  nosetests test_prot_setup.py 
+  245  nano test_prot_setup.py`
+  246  nano test_prot_setup.py
+  247  ls
+  248  rm dcb.prepi dcb.frcmod dcb.tem dcb.zmat dcb_box.pdb protein_scoop.pdb protoms_py.log water.pdb 
+  249  ls
+  250  nosetests test_prot_setup.py 
+  251  cd ../test_equil/
+  252  ls
+  253  rm dcb.prepi dcb.frcmod dcb.tem dcb.zmat dcb_box.pdb protein_scoop.pdb protoms_py.log water.pdb 
+  254  rm run_bnd.cmd 
+  255  rm -r out_bnd/
+  256  ls
+  257  nano test_equil_prot.py 
+  258  hg pull
+  259  ls
+  260  nano test_equil_prot.py 
+  261  cd ../..
+  262  pwd
+  263  hg pull
+  264  nano tests/test_equil/test_equil_prot.py 
+  265  hg branch
+  266  exit
+  267  ls
+  268  cd ProtoMS-Work
+  269  ls
+  270  cd protoms-test-suite
+  271  ls
+  272  hg pull
+  273  module load hg
+  274  hg pull
+  275  nano tests/test_equil/test_equil_prot.py 
+  276  module list
+  277  module load numpy
+  278  module list
+  279  module load cmake
+  280  pwd
+  281  echo $PROTOMSHOME
+  282  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  283  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  284  pwd
+  285  cd tests/test_equil/
+  286  cd ../..
+  287  ls
+  288  mkdir build
+  289  cd build
+  290  cmake ..
+  291  make install
+  292  ls
+  293  cd ../tests/test_equil/
+  294  ls
+  295  nosetests test_equil_prot.py 
+  296  nano test_equil_prot.py 
+  297  nosetests test_equil_prot.py 
+  298  nano test_equil_prot.py 
+  299  nosetests test_equil_prot.py 
+  300  ls
+  301  module load amber
+  302  nosetests test_equil_prot.py 
+  303  nano run_bnd.cmd 
+  304  pwd
+  305  exit
+  306  ls
+  307  cd ProtoMS-Work
+  308  ls
+  309  cd protoms-test-suite
+  310  module load hg python numpy cmake amber
+  311  module list
+  312  hg pull
+  313  hg update
+  314  hg resolve
+  315  hg resolve --all
+  316  exit
+  317  ls
+  318  cd ProtoMS-Work/
+  319  ls
+  320  rm -r protoms-test-suite/
+  321  module load hg
+  322  ls
+  323  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev -r default protoms-dev-test-content
+  324  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev -r protoms-test-suite protoms-testsuite
+  325  ls
+  326  cd protoms-testsuite/
+  327  ls
+  328  module list
+  329  module load cmake amber numpy
+  330  module list
+  331  mkdir build
+  332  cd build
+  333  cmake ..
+  334  make install
+  335  ls
+  336  ctest
+  337  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-testsuite
+  338  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-testsuite
+  339  ctest
+  340  nano Testing/Temporary/LastTest.log 
+  341  cd ../../../../
+  342  pwd
+  343  cd di1c13/ProtoMS-Work/
+  344  ls
+  345  cd protoms-testsuite/
+  346  ls
+  347  cd tests
+  348  ls
+  349  cd test_jaws1
+  350  ls
+  351  cd ..
+  352  pwd
+  353  cd test_setup/
+  354  ls
+  355  rm dcb.frcmod dcb.prepi dcb.tem dcb.zmat dcb_box.pdb protein_scoop.pdb water.pdb 
+  356  ls
+  357  cd ..
+  358  cd test_equil
+  359  ls
+  360  rm dcb.frcmod dcb.prepi dcb.tem dcb.zmat dcb_box.pdb protein_scoop.pdb protoms_py.log water.pdb run_bnd.cmd 
+  361  ls
+  362  rm -r out_bnd/
+  363  ls
+  364  cd ..
+  365  cd test_sampling/
+  366  LS
+  367  ls
+  368  rm dcb.frcmod dcb.prepi dcb.tem dcb.zmat dcb_box.pdb protein_scoop.pdb protoms_py.log run_bnd.cmd 
+  369  ls
+  370  rm -r out_bnd/
+  371  ls
+  372  rm water.pdb 
+  373  ls
+  374  cd ../test_gcmc/
+  375  l
+  376  ls
+  377  rm gcmc_box.pdb gcmc_wat.pdb make_gcmcbox_py.log protoms_py.log run_bnd.cmd 
+  378  ls
+  379  rm -r out/
+  380  ls
+  381  cd ../test_jaws1
+  382  ls
+  383  rm fragment.frcmod fragment.prepi fragment.zmat fragment_box.pdb jaws1_* water_clr.pdb protein_scoop.pdb run_bnd.cmd 
+  384  ls
+  385  rm fragment.tem 
+  386  ls
+  387  rm -r out/
+  388  ls
+  389  rm protoms_py.log 
+  390  ls
+  391  cd ../test_jaws2/
+  392  ls
+  393  rm run*
+  394  ls
+  395  rm jaws2_*
+  396  ls
+  397  cp ../jaws2/jaws2_waters.pdb .
+  398  ls
+  399  rm fragment_box.pdb 
+  400  rm -r out_jaws2-w1/
+  401  ls
+  402  rm fragment.tem fragment.zmat fragment.prepi fragment.frcmod 
+  403  ls
+  404  rm protein_scoop.pdb 
+  405  ls
+  406  rm protoms_py.log 
+  407  ls
+  408  cd ../test_RETI_sngl/
+  409  ls
+  410  rm ethane.prepi ethane.zmat ethane_box.pdb etht* methanol.prepi methanol.tem methanol.zmat methanol_box.pdb prep_files.tar run*
+  411  ls
+  412  rm ethane.tem ethane.frcmod protoms_py.log 
+  413  ls
+  414  rm -r out*
+  415  ls
+  416  rm methanol.frcmod 
+  417  ls
+  418  cd ../test_RETI_dbl/
+  419  ls
+  420  rm ethane.frcmod ethane.prepi ethane.zmat ethane_box.pdb methanol.prepi methanol.frcmod methanol.zmat methanol_box.pdb methanol.tem
+  421  ls
+  422  rm eth-meo.tem ethane.tem protoms_py.log run_free.cmd 
+  423  ls
+  424  rm -r out_free/
+  425  rm prep_files.tar 
+  426  ls
+  427  cd ../
+  428  ls
+  429  cd ../
+  430  ls
+  431  pwd
+  432  ls ..
+  433  cd build/
+  434  ctest
+  435  nano Testing/Temporary/LastTest.log 
+  436  ls
+  437  cd ProtoMS-Work/
+  438  ls
+  439  cd protoms-testsuite
+  440  ls
+  441  nano build/Testing/Temporary/
+  442  nano build/Testing/Temporary/LastTest.log 
+  443  ls
+  444  cd ProtoMS-Work/
+  445  ls
+  446  cd protoms-testsuite/
+  447  ls
+  448  module load python numpy cmake amber
+  449  module list
+  450  ls
+  451  cd build
+  452  cd Testing/Temporary/
+  453  ls
+  454  nano LastTest.log 
+  455  pwd
+  456  cd ../../..
+  457  ls
+  458  module list
+  459  cd tests
+  460  cd test_setup/
+  461  ls
+  462  nosetests test_prot_setup.py 
+  463  pwd
+  464  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-testsuite
+  465  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-testsuite
+  466  nosetests test_prot_setup.py 
+  467  ls
+  468  nano water.pdb 
+  469  rm dcb.prepi dcb.tem dcb.frcmod dcb_box.pdb protein_scoop.pdb water.pdb dcb.zmat protoms_py.log 
+  470  ls
+  471  cd ../..
+  472  pwd
+  473  cd build
+  474  make test
+  475  cd ../
+  476  pwd
+  477  ls
+  478  cd tests
+  479  ls
+  480  nosetests test*
+  481  ls
+  482  rm run_*
+  483  ls
+  484  rm water.pdb protoms_py.log make_gcmcbox_py.log eth-meo.tem 
+  485  ls
+  486  rm gcmc_*
+  487  ls
+  488  pwd
+  489  cd ..
+  490  ls
+  491  pwd
+  492  cd ..
+  493  module load hg
+  494  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev -r default protoms-dev-testsuite
+  495  ls
+  496  rm -r protoms-dev-test-content/ protoms-dev-tests/
+  497  ls
+  498  rm -r protoms-dev-testsuite/
+  499  ls
+  500  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev -r default protoms-dev-testsuite
+  501  ls
+  502  cd ProtoMS-Work/
+  503  ls
+  504  cd protoms-testsuite/
+  505  ls
+  506  module load numpy python cmake amber
+  507  module list
+  508  ls
+  509  nano build/Testing/Temporary/LastTest.log 
+  510  nano tests/test_setup/test_prot_setup.py
+  511  ls
+  512  module load numpy python cmake amber
+  513  module load hg
+  514  ls
+  515  cd ProtoMS-Work/protoms-testsuite/
+  516  ls
+  517  exit
+  518  ls
+  519  cd ProtoMS-Work/
+  520  ls
+  521  rm -r  protoms-testsuite
+  522  rm -r protoms-dev-testsuite
+  523  rm -r protoms-dev
+  524  rm -r protoms-dev-testset
+  525  ls
+  526  module load hg
+  527  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev/ -r protoms-dev protoms-dev
+  528  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev/ -r default protoms-dev
+  529  ls
+  530  hg clone ssh://hg@bitbucket.org/jessexgroup/protoms-dev/ -r protoms-test-suite protoms-test-suite
+  531  ls
+  532  cd protoms-test-suite/
+  533  ls
+  534  module load python numpy cmake amber
+  535  mkdir build
+  536  cd build
+  537  cmake ..
+  538  make install
+  539  ls
+  540  cd ..
+  541  ls
+  542  cd ..
+  543  ls
+  544  cd protoms-dev
+  545  ls
+  546  hg pull
+  547  ls
+  548  mkdir build
+  549  cd build
+  550  make ..
+  551  cmake ..
+  552  make install
+  553  cd ..
+  554  ls
+  555  cd ..
+  556  ls
+  557  pwd
+  558  export PROTOMSHOME=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  559  cd protoms-test-suite/
+  560  ls
+  561  cd build
+  562  ls
+  563  ctest
+  564  nano Testing/Temporary/LastTest.log 
+  565  ls
+  566  rm -r Testing/
+  567  pwd
+  568  export PYTHONPATH=/home/di1c13/ProtoMS-Work/protoms-test-suite
+  569  ctest
+  570  nano Testing/Temporary/LastTest.log 
+  571  ls
+  572  nano Testing/Temporary/LastTest.log 
+  573  ls ..
+  574  echo $PROTOMSHOME
+  575  nano Testing/Temporary/LastTest.log 
+  576  ls ../tests/test_RETI_dbl/
+  577  ls ../tests/test_equil/
+  578  ls
+  579  protoms3 run_bnd.cmd 
+  580  $PROTOMSHOME/protoms3 run_bnd.cmd 
+  581  python
+  582  ls
+  583  pwd
+  584  cd ..
+  585  ls
+  586  hg pull
+  587  ls
+  588  cd ProtoMS-Work/
+  589  ls
+  590  cd protoms-test-suit
+  591  cd protoms-test-suite/
+  592  module load hg
+  593  hg pull
+  594  hg branch
+  595  module load numpy python cmake amber 
+  596  nano tests/test_RETI_dbl/test_reti_dbl.py 
+  597  ls
+  598  python
+  599  module avail cray
+  600  module list
+  601  exit
+  602  ls
+  603  cd ProtoMS-Work
+  604  ls
+  605  module load python numpy cmake amber
+  606  python
+  607  cd protoms-test-suite
+  608  ls
+  609  module load hg
+  610  hg branch
+  611  hg pull
+  612  hg update
+  613  hg update -f
+  614  ls
+  615  hg pull
+  616  ls
+  617  mkdir CGPACK-Work
+  618  cd CGPACK-Work/
+  619  mkdir cgpack
+  620  mkdir lib
+  621  cd cgpack
+  622  svn co https://svn.code.sf.net/p/cgpack/code/ .
+  623  ls
+  624  cd head
+  625  ls
+  626  nano Makefile-bc
+  627  nano Makefile-archer 
+  628  nano Makefile-bc
+  629  nano Makefile-archer 
+  630  nano Makefile-bc-shared 
+  631  ln -s Makefile-bc-shared Makefile
+  632  ls
+  633  module load intel
+  634  module load fortran
+  635  pwd
+  636  echo $HOME
+  637  ls ../..
+  638  nano Makefile
+  639  make
+  640  ls
+  641  ls ../..
+  642  ls ..
+  643  ls ../../..
+  644  nano Makefile
+  645  make
+  646  nano Makefile
+  647  pwd
+  648  ls ..
+  649  nano Makefile
+  650  pwd
+  651  cd ../..
+  652  ls
+  653  mkdir mod
+  654  cd cgpack/head/
+  655  ls
+  656  nano Makefile
+  657  make
+  658  ls ../../mod/
+  659  nano Makefile
+  660  exit
+  661  ls
+  662  cd CGPACK-Work/
+  663  ls
+  664  ls mod/
+  665  cd cgpack
+  666  cd head
+  667  nano Makefile
+  668  echo $HOME
+  669  pwd
+  670  nano Makefile
+  671  module load ifort
+  672  module load intel
+  673  module load cmake
+  674  make
+  675  nano Makefile
+  676  module load openmpi
+  677  make
+  678  make -verbose=1
+  679  make -VERBOSE=1
+  680  module load icc
+  681  make
+  682  ifort -c cgca_m2geom.f90 
+  683  ifort -c cgca_m2lnklst.f90 
+  684  ifort -c cgca_m2mpiio.f90 
+  685  ls
+  686  cd CGPACK-Work/
+  687  ls
+  688  cd cgpack/head/
+  689  module load cmake intel openmpi
+  690  ls
+  691  make
+  692  ifort -c cgca_m2mpiio.f90 
+  693  module load mpi
+  694  make
+  695  ifort -c cgca_m3pfem.f90 
+  696  make
+  697  ifort -c cgca_m4fr.f90 
+  698  ifort --version
+  699  module list
+  700  ls
+  701  ifort -coarray cgca_m4fr.f90 
+  702  ls
+  703  ifort -c -coarray cgca_m3pfem.f90 
+  704  ifort -c -coarray cgca_m4fr.f90 
+  705  ifort -c -coarray cgca_m2mpiio.f90 
+  706  make
+  707  ifort -c -coarray -debug -free -fPIC -warn all cgca_m2mpiio.f90 
+  708  nano Makefile
+  709  make
+  710  mpif90 -c cgca_m2mpiio.f90 
+  711  mpif90 -c -coarray cgca_m2mpiio.f90 
+  712  ls
+  713  make
+  714  ls
+  715  nano Makefile
+  716  make
+  717  history
+  718  pwd
+  719  history>../../make-command_history.txt
+  720  ls ../..
+  721  ls
+  722  cd CGPACK-Work/
+  723  ls
+  724  cd head
+  725  cd cgpack/head/
+  726  ls
+  727  module load intel cmake mpi
+  728  module list
+  729  make
+  730  nano Makefile
+  731  make
+  732  nano Makefile
+  733  make
+  734  nano Makefile
+  735  make
+  736  make -r
+  737  ls
+  738  make -f Makefile -r
+  739  ls
+  740  nano Makefile
+  741  make
+  742  history>../../make-command_history.txt 
+  743  ls
+  744  nano ../../make-command_history.txt 
+  745  ls
+  746  ls ../../lib/
+  747  ls ../../mod/
+  748  ls ../../../
+  749  make
+  750  module load git
+  751  pwd
+  752  cd ../..
+  753  pwd
+  754  ls
+  755  cd ..
+  756  ls
+  757  mv CGPACK-Work/ CGPACK-Intel-Iridis/
+  758  ls
+  759  ls CGPACK-Intel-Iridis/
+  760  cd CGPACK-Intel-Iridis/
+  761  git init
+  762  git remote add origin git@github.com:DevasenaInupakutika/cgpack.git
+  763  ls -al
+  764  ls
+  765  pwd
+  766  cd ..
+  767  git pull git@github.com:DevasenaInupakutika/cgpack.git
+  768  git pull https://github.com/DevasenaInupakutika/cgpack.git
+  769  pwd
+  770  ls
+  771  git clone https://github.com/DevasenaInupakutika/cgpack.git
+  772  ls
+  773  cd cgpack/
+  774  ls
+  775  mv ../CGPACK-Intel-Iridis/ CGPACK-Intel-Iridis/
+  776  ls
+  777  ls ../
+  778  git add -A
+  779  git commit -m "Added compiled/build cgpack library with Intel compilers on Iridis"
+  780  git push origin master
+  781  git push git@github.com:DevasenaInupakutika/cgpack.git master
+  782  cd CGPACK-Intel-Iridis/
+  783  ls
+  784  cd cgpack/
+  785  cd head/
+  786  ls
+  787  cd cgpack/
+  788  ls
+  789  cd CGPACK-Intel-Iridis/
+  790  ls
+  791  cd cgpack/head/
+  792  ls
+  793  cd tests/templates/template.bc3.pvbatch.bash
+  794  ls tests
+  795  ln -s Makefile-bc-shared Makefile
+  796  ls
+  797  make
+  798  nano Makefile
+  799  pwd
+  800  nano Makefile
+  801  ls
+  802  ls ..
+  803  ls ../../
+  804  make
+  805  cd tests
+  806  ls
+  807  ln -s Makefile Makefile-bc-shared 
+  808  nano Makefile-
+  809  ls
+  810  ln -s Makefile-bc-shared Makefile 
+  811  ls
+  812  nano Makefile
+  813  make
+  814  nano Makefile
+  815  make
+  816  module load intel cmake openmpi
+  817  make
+  818  ifort -c -coarray testABW.f90 
+  819  nano Makefile
+  820  mpif90 -c -coarray testABU.f90 
+  821  mpif90 -c -coarray testABW.f90 
+  822  make
+  823  ifort -c -coarray -J testABW.f90 
+  824  make check-parallel
+  825  ls
+  826  make
+  827  ls
+  828  exit
+  829  ls
+  830  cd cgpack/
+  831  ls
+  832  cd CGPACK-Intel-Iridis/
+  833  ls
+  834  ls lib/
+  835  cd cgpack/head/
+  836  ls
+  837  cd tests
+  838  ls
+  839  make
+  840  ls
+  841  cd cgpack/CGPACK-Intel-Iridis/
+  842  ls
+  843  cd cgpack/head/
+  844  ls
+  845  cd tests
+  846  make
+  847  module load intel cmake openmpi
+  848  make
+  849  ls
+  850  echo $LD_LIBRARY_PATH
+  851  ls /home/local/software/intel/2013.4.183/composer_xe_2013.4.183/compiler/lib/intel64/
+  852  make -mt_mpi
+  853  echo $LD_LIBRARY_PATH
+  854  make
+  855  make -lmpi
+  856  make -lmpi_mt
+  857  ifort -V
+  858  ls
+  859  ifort -coarray *.f90
+  860  make
+  861  module list
+  862  make -L -lmpi
+  863  nano Makefile
+  864  mpif90 -L -lmpi test*.f90
+  865  ls
+  866  cd cgpack/CGPACK-Intel-Iridis/
+  867  ls
+  868  cd cgpack/head/
+  869  ls
+  870  cd tests
+  871  module load cmake intel/mpi/2016 
+  872  make
+  873  module list
+  874  module load intel
+  875  module list
+  876  make
+  877  ls
+  878  mpif90 -c testABW.f90 
+  879  ifort -c -coarray testABW.f90 
+  880  make
+  881  nano testABW.f90 
+  882  ls ../
+  883  nano ../../../make-command_history.txt 
+  884  ifort -c -coarray testABW.f90 
+  885  nano ../../../make-command_history.txt 
+  886  module load openmpi
+  887  make
+  888  module remove openmpi
+  889  make
+  890  ifort -c -coarray -lg2c  testABW.f90 
+  891  make
+  892  ls ../../head/
+  893  cp ../*.mod ../../../mod/
+  894  ls ../../../mod/
+  895  cp ../libcgcapack.a ../../../lib/
+  896  nano Makefile
+  897  make
+  898  ls
+  899  make -openmp
+  900  module liat
+  901  module list
+  902  module load intel/2016
+  903  module load intel/mkl/2016
+  904  make
+  905  nano testABW.f90 
+  906  ls
+  907  nano testAAA.f90
+  908  nano testABW.f90 
+  909  make
+  910  nano testABW.f90 
+  911  make
+  912  nano testABW.f90 
+  913  ls ../..
+  914  ls ..
+  915  nano ../cgca_m2mpiio.f90 
+  916  ifort -c -coarray ../cgca_m2mpiio.f90
+  917  make
+  918  ls
+  919  ifort -o testABW.o testABW.o testaux.o -coarray -L/home/di1c13/cgpack/CGPACK-Intel-Iridis/cgpack/head -lcgcapack 
+  920  nano testABW.o
+  921  ifort -o testABW.x testABW.o testaux.o -coarray -L/home/di1c13/cgpack/CGPACK-Intel-Iridis/cgpack/head -lcgcapack
+  922  ls
+  923  ifort -o testABV.f90
+  924  ifort -c -coarray testABV.f90
+  925  ls
+  926  nano test_gc.sh 
+  927  exit
+  928  ls
+  929  scp user@DEVASENA-ECS-SOUTHAMPTON:/Users/user/Work/Tags.csv di1c13@iridis4_a.soton.ac.uk
+  930  scp user:/Users/user/Work/Tags.csv di1c13@iridis4_a.soton.ac.uk:Tags.csv
+  931  scp /Users/user/Work/Tags.csv di1c13@iridis4_a.soton.ac.uk:Tags.csv
+  932  exit
+  933  scp
+  934  scp AbuBakr-VAIO:F:/SIMS/Results/2ndSet(120914)/Modelling2/SurfaceFlux - 6/lowtemp/POCLFunction.sln di1c13@iridis4_a.soton.ac.uk:POCLFunction.sln
+  935  scp AbuBakr-VAIO:F:/POCLFunction.sln di1c13@iridis4_a.soton.ac.uk:POCLFunction.sln
+  936  scp AbuBakr@AbuBakr-VAIO:F:/POCLFunction.sln di1c13@iridis4_a.soton.ac.uk:POCLFunction.sln
+  937  pwd
+  938  ls
+  939  module load C
+  940  module load c#
+  941  module load C#
+  942  module load CS
+  943  module load visu
+  944  module load python
+  945  module list
+  946  exit
+  947  ls
+  948  module Mono
+  949  module load Mono
+  950  module load mono/3.12.0 
+  951  module list
+  952  nano helloworld.cs
+  953  csharp helloworld.cs 
+  954  csc helloworld.cs 
+  955  ls
+  956  nano helloworld.cs
+  957  csharp helloworld.cs 
+  958  nano helloworld.c
+  959  module remove mono/3.12.0 
+  960  module list
+  961  csharp helloworld.cs 
+  962  exit
+  963  ls
+  964  cd cgpack/
+  965  ls
+  966  cd CGPACK-Intel-Iridis/
+  967  ls
+  968  cd cgpack/head/
+  969  ls
+  970  cd cgpack/
+  971  ls
+  972  cd cgpack/
+  973  ls
+  974  cd CGPACK-Intel-Iridis/
+  975  ls
+  976  ls mod
+  977  cat make-command_history.txt 
+  978  ls
+  979  cd cgpack/
+  980  ls
+  981  exit
+  982  ls
+  983  cd cgpack/
+  984  ls
+  985  cd CGPACK-Intel-Iridis/
+  986  ls
+  987  cd CGPACK-Intel-Iridis/
+  988  pwd
+  989  cd cgpack/
+  990  cd head/
+  991  ls
+  992  cd tests
+  993  ls
+  994  ls templates/
+  995  ls
+  996  nano Makefile-bc3-oca
+  997  exit
+  998  ls
+  999  cd cgpack/
+ 1000  ls
+ 1001  cd CGPACK-Intel-Iridis/
+ 1002  ls
+ 1003  cd cgpack/head/
+ 1004  ls
+ 1005  module load intel
+ 1006  module load cmake
+ 1007  module list
+ 1008  nano ~/bash_history
+ 1009  nano history
+ 1010  history
+ 1011  touch cgpack_history
+ 1012  history >cgpack_history
