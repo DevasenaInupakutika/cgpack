@@ -1,0 +1,111 @@
+#$Id: Makefile-archer 176 2015-12-15 16:16:58Z mexas $
+
+#*robodoc*b* CGPACK/Makefile-archer
+#  NAME
+#    Makefile-archer
+#  SYNOPSIS
+
+FC=		ftn
+
+#  PURPOSE
+#    Build/install CGPACK on HECToR with Cray compilers.
+#  AUTHOR
+#    Anton Shterenlikht
+#  COPYRIGHT
+#    See CGPACK_Copyright
+#  SOURCE
+
+FFLAGS=		-c -eacFn -dm -m2 -rl
+CGPACK=		cgpack
+MYLIB=		lib$(CGPACK).a
+LIBDIR=		$(HOME)/lib
+
+# level 1
+
+SRC_MOD_L1=	cgca_m1co.f90
+OBJ_L1=		${SRC_MOD_L1:.f90=.o}
+LST_L1=		$(OBJ_L1:.o=.lst)
+
+# level 2
+
+SRC_MOD_L2_NOPRE=\
+cgca_m2alloc.f90 cgca_m2gb.f90 cgca_m2geom.f90 cgca_m2glm.f90 \
+cgca_m2hx.f90 cgca_m2lnklst.f90 cgca_m2mpiio.f90 \
+cgca_m2phys.f90 cgca_m2red.f90 \
+cgca_m2rnd.f90 cgca_m2rot.f90 cgca_m2stat.f90
+OBJ_L2_NOPRE=	${SRC_MOD_L2_NOPRE:.f90=.o}
+LST_L2_NOPRE=	$(OBJ_L2_NOPRE:.o=.lst)
+
+SRC_MOD_L2_PRE=	cgca_m2out.F90 cgca_m2pck.F90
+OBJ_L2_PRE=	${SRC_MOD_L2_PRE:.F90=.o}
+LST_L2_PRE=	$(OBJ_L2_PRE:.o=.lst)
+
+OBJ_L2=		$(OBJ_L2_NOPRE) $(OBJ_L2_PRE)
+LST_L2=		$(LST_L2_NOPRE) $(LST_L2_PRE)
+
+# level 3
+
+SRC_MOD_L3_NOPRE=cgca_m3gbf.f90 cgca_m3nucl.f90 cgca_m3pfem.f90
+OBJ_L3_NOPRE=	${SRC_MOD_L3_NOPRE:.f90=.o}
+LST_L3_NOPRE=	${SRC_MOD_L3_NOPRE:.f90=.lst}
+
+SRC_MOD_L3_PRE=	cgca_m3clvg.F90 cgca_m3sld.F90
+OBJ_L3_PRE=	${SRC_MOD_L3_PRE:.F90=.o}
+LST_L3_PRE=	${SRC_MOD_L3_PRE:.F90=.lst}
+
+OBJ_L3=		$(OBJ_L3_NOPRE) $(OBJ_L3_PRE)
+LST_L3=		$(LST_L3_NOPRE) $(LST_L3_PRE)
+
+# level 4
+
+SRC_MOD_L4=	cgca_m4fr.f90
+OBJ_L4=		${SRC_MOD_L4:.f90=.o}
+LST_L4=		${SRC_MOD_L4:.f90=.lst}
+
+# top level
+
+SRC_MOD_LTOP=	cgca.F90
+OBJ_LTOP=	${SRC_MOD_LTOP:.F90=.o}
+LST_LTOP=	$(OBJ_LTOP:.o=.lst)
+
+ALL_OBJ=	${OBJ_L1} ${OBJ_L2} ${OBJ_L3} $(OBJ_L4) ${OBJ_LTOP}
+ALL_LST=	$(LST_L1) $(LST_L2) $(LST_L3) $(LST_L4) $(LST_LTOP)
+
+.SUFFIXES: .F90 .f90 .o
+
+all: $(ALL_OBJ) $(MYLIB)
+
+.f90.o:
+	$(FC) $(FFLAGS) $<
+
+.F90.o:
+	$(FC) $(FFLAGS) $<
+
+# object dependencies
+
+$(OBJ_L2): $(OBJ_L1)
+$(OBJ_L3): $(OBJ_L2)
+$(OBJ_L4): $(OBJ_L3)
+$(OBJ_LTOP): $(OBJ_L4)
+
+$(MYLIB): $(ALL_OBJ)
+	@if [ -e $(MYLIB) ]; then \
+		rm $(MYLIB); \
+	fi
+	ar -r $(MYLIB) $(ALL_OBJ)
+
+install: $(MYLIB)
+	@if [ -e $(LIBDIR)/$(MYLIB) ]; then \
+		echo $(LIBDIR)/$(MYLIB) already exists; \
+		echo run \"make deinstall\" first; \
+		exit 1; \
+	fi
+	cp $(MYLIB) $(LIBDIR)
+
+deinstall:
+	cd $(LIBDIR) && rm $(MYLIB)
+
+clean:
+	rm $(ALL_LST) $(ALL_OBJ) $(MYLIB)
+
+#*roboend*

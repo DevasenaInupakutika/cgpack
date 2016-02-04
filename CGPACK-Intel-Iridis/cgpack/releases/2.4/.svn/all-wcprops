@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/p/cgpack/code/!svn/ver/96/releases/2.4
+END
+Makefile-archer
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/Makefile-archer
+END
+cgca_m2out.F90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2out.F90
+END
+CGPACK_Copyright
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/p/cgpack/code/!svn/ver/96/releases/2.4/CGPACK_Copyright
+END
+cgca_m4fr.f90
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m4fr.f90
+END
+cgca_m2red.f90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2red.f90
+END
+cgca_m2stat.f90
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2stat.f90
+END
+cgca_m2pck.f90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2pck.f90
+END
+cgca_m2mpiio.f90
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2mpiio.f90
+END
+cgca_m2hx.f90
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2hx.f90
+END
+cgca_m2glm.f90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2glm.f90
+END
+cgca.f90
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca.f90
+END
+robodoc.rc
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/p/cgpack/code/!svn/ver/96/releases/2.4/robodoc.rc
+END
+Makefile-bc3-parafem
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/p/cgpack/code/!svn/ver/96/releases/2.4/Makefile-bc3-parafem
+END
+cgca_m2phys.f90
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2phys.f90
+END
+cgca_m2rnd.f90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2rnd.f90
+END
+cgca_m3sld.F90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m3sld.F90
+END
+Makefile-gfortran
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/p/cgpack/code/!svn/ver/96/releases/2.4/Makefile-gfortran
+END
+Makefile-hector
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/Makefile-hector
+END
+Makefile-bc
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/p/cgpack/code/!svn/ver/96/releases/2.4/Makefile-bc
+END
+cgca_m2pfem.f90
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2pfem.f90
+END
+cgca_m2gb.f90
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2gb.f90
+END
+cgca_m2alloc.f90
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2alloc.f90
+END
+Makefile-bc-shared
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/p/cgpack/code/!svn/ver/96/releases/2.4/Makefile-bc-shared
+END
+cgca_m3clvg.F90
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m3clvg.F90
+END
+cgca_m3gbf.f90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m3gbf.f90
+END
+cgca_m1co.f90
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m1co.f90
+END
+cgca_m3nucl.f90
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m3nucl.f90
+END
+cgca_m2rot.f90
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/cgpack/code/!svn/ver/96/releases/2.4/cgca_m2rot.f90
+END

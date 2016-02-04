@@ -1,0 +1,141 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+
+Begin optimization report for: TESTABW
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (TESTABW) [1] testABW.f90(8,9)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at testABW.f90(78,1)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25436: completely unrolled by 3  
+LOOP END
+
+LOOP BEGIN at testABW.f90(115,1)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25436: completely unrolled by 3  
+LOOP END
+
+LOOP BEGIN at testABW.f90(119,10)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25436: completely unrolled by 3  
+LOOP END
+
+LOOP BEGIN at testABW.f90(130,3)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at testABW.f90(130,3)
+<Remainder loop for vectorization>
+   remark #25436: completely unrolled by 1  
+LOOP END
+
+LOOP BEGIN at testABW.f90(132,15)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25436: completely unrolled by 3  
+LOOP END
+
+LOOP BEGIN at testABW.f90(146,1)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at testABW.f90(146,1)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at testABW.f90(146,1)
+         remark #25408: memset generated
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at testABW.f90(146,1)
+         <Peeled loop for vectorization>
+         LOOP END
+
+         LOOP BEGIN at testABW.f90(146,1)
+            remark #15300: LOOP WAS VECTORIZED
+         LOOP END
+
+         LOOP BEGIN at testABW.f90(146,1)
+         <Remainder loop for vectorization>
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at testABW.f90(147,1)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at testABW.f90(147,1)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at testABW.f90(147,1)
+         remark #25408: memset generated
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at testABW.f90(147,1)
+         <Peeled loop for vectorization>
+         LOOP END
+
+         LOOP BEGIN at testABW.f90(147,1)
+            remark #15300: LOOP WAS VECTORIZED
+         LOOP END
+
+         LOOP BEGIN at testABW.f90(147,1)
+         <Remainder loop for vectorization>
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at testABW.f90(196,1)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   remark #25436: completely unrolled by 3  
+
+   LOOP BEGIN at testABW.f90(196,1)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25436: completely unrolled by 3  
+   LOOP END
+
+   LOOP BEGIN at testABW.f90(196,1)
+   LOOP END
+
+   LOOP BEGIN at testABW.f90(196,1)
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at testABW.f90(228,1)
+   remark #15532: loop was not vectorized: compile time constraints prevent loop optimization. Consider using -O3.
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+testABW.f90(146,1):remark #34026: call to memset implemented as a call to optimized library version
+testABW.f90(147,1):remark #34026: call to memset implemented as a call to optimized library version
+===========================================================================
+
+Begin optimization report for: caflaunch$MAIN$blk
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (caflaunch$MAIN$blk) [2] <compiler generated>
+
+===========================================================================
